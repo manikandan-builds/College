@@ -1,0 +1,32 @@
+<body>
+    <h1>Image Slideshow</h1>
+    <div>
+        <img id="slide" src="I:\NMK Files\college\sem6\FULL STACK\images\download (1).jfif" width="500" height="300" >
+    </div>
+    <div>
+        <button onclick="prevImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+    </div>
+
+    <script>
+        let images = [
+            "file:///I:/NMK Files/college/sem6/FULL STACK/images/download (1).jfif",
+            "file:///I:/NMK Files/college/sem6/FULL STACK/images/download (2).jfif",
+            "file:///I:/NMK Files/college/sem6/FULL STACK/images/download (3).jfif"
+        ];
+
+        let index = 0;
+
+        function nextImage() {
+            index = (index + 1) % images.length;
+            document.getElementById("slide").src = images[index];
+        }
+
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            document.getElementById("slide").src = images[index];
+        }
+    </script>
+
+</body>
+</html>

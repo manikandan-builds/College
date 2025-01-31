@@ -1,0 +1,93 @@
+<head>
+    <script>
+        function shuffle() {
+            let table = document.querySelector("table");
+            let cells = [...table.getElementsByTagName("td")];
+            let values = cells.map(cell => cell.textContent);
+
+            
+            for (let i = values.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [values[i], values[j]] = [values[j], values[i]];
+            }
+
+            cells.forEach((cell, index) => {
+                cell.textContent = values[index];
+            });
+        }
+
+        function moveTile(event) {
+            let cell = event.target;
+          //   console.log(cell)
+            if (cell.textContent === "") return; 
+
+            let table = document.querySelector("table");
+            let cells = [...table.getElementsByTagName("td")];
+            let index = cells.indexOf(cell);
+            console.log(index)
+            let emptyIndex = cells.findIndex(cell => cell.textContent === "");
+
+            
+            let validMoves = [
+                emptyIndex - 1, 
+                emptyIndex + 1, 
+                emptyIndex - 4, 
+                emptyIndex + 4  
+            ];
+
+            if (validMoves.includes(index)) {
+                [cells[index].textContent, cells[emptyIndex].textContent] =
+                [cells[emptyIndex].textContent, cells[index].textContent];
+
+                checkWin(); 
+            }
+        }
+
+        function checkWin() {
+            let table = document.querySelector("table");
+            let cells = [...table.getElementsByTagName("td")];
+            let correctOrder = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", ""];
+
+            let currentOrder = cells.map(cell => cell.textContent);
+            if (JSON.stringify(currentOrder) === JSON.stringify(correctOrder)) {
+                alert("You Won!");
+            }
+        }
+
+        window.onload = function() {
+            document.querySelectorAll("td").forEach(cell => {
+                cell.addEventListener("click", moveTile);
+            });
+        };
+    </script>
+</head>
+<body>
+    <table border="1" cellpadding="10">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td></td> 
+        </tr>
+    </table>
+    <button onclick="shuffle()">SHUFFLE</button>
+</body>
+</html>

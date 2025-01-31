@@ -1,0 +1,20 @@
+<head>
+     <script>
+          function changecolor(element){
+               element.style.backgroundColor = element.innerHTML;
+          }
+          function resetcolor(element){
+               element.style.backgroundColor = "";
+          }
+     </script>
+</head>
+<body>
+     <table border="1" cellpadding="10" id = "mytable">
+          <tr>
+               <td onmouseover="changecolor(this)" onmouseout="resetcolor(this)">#546541</td>
+               <td onmouseover="changecolor(this)" onmouseout="resetcolor(this)">#800000</td>
+          </tr>
+
+     </table>
+     
+</body>

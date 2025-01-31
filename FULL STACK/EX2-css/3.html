@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .staircase {
+            position: relative;
+            height: 400px;
+            padding: 20px;
+        }
+        .step {
+            position: absolute;
+            background: blue;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .step:nth-child(1) {  top: 0px;width: 60px; }
+        .step:nth-child(2) {  top: 60px;width: 100px; }
+        .step:nth-child(3) {  top: 120px;width: 140px; }
+        .step:nth-child(4) {  top: 180px; width: 180px;}
+    </style>
+</head>
+<body>
+    <h3> STAIRCASE </h3>
+    
+    <div class="staircase">
+        <div class="step">Step 1</div>
+        <div class="step">Step 2</div>
+        <div class="step">Step 3</div>
+        <div class="step">Step 4</div>
+    </div>
+</body>
+</html>
