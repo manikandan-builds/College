@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup Detection</title>
+</head>
+<body>
+    <button onclick="testPopup()">Test Popup</button>
+
+    <script>
+        function testPopup() {
+            var popup = window.open('about:blank', 'PopupTest', 'width=300,height=300');
+
+            setTimeout(function() {
+                if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+                    // Popup was blocked
+                    window.location.href = 'error.html';
+                } else {
+                    // Popup was allowed
+                    popup.close();
+                    alert('Popups are allowed!');
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

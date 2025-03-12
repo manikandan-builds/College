@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop List</title>
+    <style>
+        .draggable-list {
+            width: 300px;
+            margin: 20px auto;
+        }
+        .list-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: move;
+        }
+        .list-item.dragging {
+            opacity: 0.5;
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="draggable-list" id="list">
+        <div class="list-item" draggable="true">Item 1</div>
+        <div class="list-item" draggable="true">Item 2</div>
+        <div class="list-item" draggable="true">Item 3</div>
+        <div class="list-item" draggable="true">Item 4</div>
+        <div class="list-item" draggable="true">Item 5</div>
+    </div>
+
+    <script>
+        const list = document.getElementById('list');
+        const items = list.getElementsByClassName('list-item');
+        let draggedItem = null;
+
+        // Add event listeners to all items
+        for (let item of items) {
+            item.addEventListener('dragstart', handleDragStart);
+            item.addEventListener('dragend', handleDragEnd);
+            item.addEventListener('dragover', handleDragOver);
+            item.addEventListener('drop', handleDrop);
+        }
+
+        function handleDragStart(e) {
+            draggedItem = this;
+            this.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            if (this !== draggedItem) {
+                let allItems = [...items];
+                let draggedIndex = allItems.indexOf(draggedItem);
+                let droppedIndex = allItems.indexOf(this);
+
+                if (draggedIndex < droppedIndex) {
+                    this.parentNode.insertBefore(draggedItem, this.nextSibling);
+                } else {
+                    this.parentNode.insertBefore(draggedItem, this);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
